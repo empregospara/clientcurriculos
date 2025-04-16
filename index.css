@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #FB316E;
+    --secondary: #2F69FF;
+    --background: #f5f7fa;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  body {
+    @apply antialiased bg-background text-neutral-800 min-h-screen;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+
+  input, textarea, select, button {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Aumentar o padding bottom de inputs e textareas */
+  input, textarea, select {
+    padding-bottom: 12px !important;
+  }
+
+  input:focus-visible, 
+  textarea:focus-visible, 
+  select:focus-visible {
+    @apply outline-none ring-2 ring-[#2F69FF]/50 border-[#FB316E];
+  }
+  
+  /* Melhorar o posicionamento dos placeholders */
+  .form-control label {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  /* Custom effect for the floating labels */
+  .form-control:has(input:focus) label,
+  .form-control:has(textarea:focus) label,
+  .form-control:has(select:focus) label {
+    @apply text-[#FB316E] text-xs transform -translate-y-3;
+  }
+  
+  /* Manter o label no topo quando o input tiver valor */
+  .form-control:has(input:not(:placeholder-shown)) label,
+  .form-control:has(textarea:not(:placeholder-shown)) label,
+  .form-control:has(select:not(:placeholder-shown)) label {
+    @apply text-xs transform -translate-y-3;
+  }
+}
+
+/* Form Step Animation */
+.step-container {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Hover Animation */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Toast Animation */
+.toast-enter {
+  transform: translateX(100%);
+}
+
+.toast-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-out;
+}
+
+.toast-exit {
+  transform: translateX(0);
+}
+
+.toast-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease-out;
+}
+
+/* Payment Status Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.payment-loading {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
